@@ -1,7 +1,11 @@
 class DockingStation
  
   def release_bike
-    Bike.new
+    if self.is_there_bike?
+      Bike.new
+    else
+      raise("No Bike Available")
+    end
   end
   
   def dock_bike(bike_name)
@@ -11,10 +15,10 @@ class DockingStation
 attr_reader :bike_name
 
   def is_there_bike?
-    if self.bike_name != ""
+    if self.bike_name != nil
       self.bike_name
     else
-      nil
+      false
     end
   end
 
