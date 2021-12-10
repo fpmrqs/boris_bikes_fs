@@ -1,8 +1,8 @@
 class DockingStation
-  def intialize
+  def initialize
     @bike_names = []
   end
-  p @bike_names.length
+
   def release_bike
     if self.is_there_bike?
       @bike_names.pop
@@ -38,6 +38,8 @@ class DockingStation
   end
 
 end
+
+p
 
 
 

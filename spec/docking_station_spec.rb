@@ -12,7 +12,10 @@ describe DockingStation do
 
     it {expect(DockingStation.new).to respond_to :dock_bike}
 
-    it {expect(DockingStation.new.dock_bike(green_bike)).to eq green_bike }
+    it "adds bike to dock" do
+        subject.dock_bike(green_bike)
+        expect(subject.bike_names.length).to eq 1
+    end
 
     it "return false if there is no bike in station" do
         station = DockingStation.new
@@ -21,7 +24,7 @@ describe DockingStation do
 
     it "checks if station has any bikes" do
         station.dock_bike(green_bike)
-        expect(station.is_there_bike?).to eq green_bike
+        expect(station.is_there_bike?).to eq true
     end 
 
     it "return error if release_bike called when no bikes available" do
@@ -34,7 +37,7 @@ describe DockingStation do
 # I'd like docking stations not to accept more bikes than their capacity.
 
     it "return error if dock_bike called when dock is full" do
-        subject.dock_bike(green_bike)
+        20.times {subject.dock_bike(green_bike)}
         expect{subject.dock_bike(green_bike)}.to raise_error("Dock station is full")
     end
 
