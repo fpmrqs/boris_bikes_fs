@@ -29,4 +29,14 @@ describe DockingStation do
         expect{station.release_bike}.to raise_error("No Bike Available")
     end
 
+# As a maintainer of the system,
+# So that I can control the distribution of bikes,
+# I'd like docking stations not to accept more bikes than their capacity.
+
+    it "return error if dock_bike called when dock is full" do
+        subject.dock_bike(green_bike)
+        expect{subject.dock_bike}.to raise_error("Dock station is full")
+    end
+
+
 end
