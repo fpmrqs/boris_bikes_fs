@@ -1,26 +1,37 @@
 class DockingStation
- 
+  def intialize
+    @bike_names = []
+  end
+  p @bike_names.length
   def release_bike
     if self.is_there_bike?
-      Bike.new
+      @bike_names.pop
     else
       raise("No Bike Available")
     end
   end
   
   def dock_bike(bike_name)
-    if self.is_there_bike?
-    @bike_name = bike_name
-    else
+    if self.is_dock_full?
       raise("Dock station is full")
+    else
+      @bike_names << bike_name
     end
   end
 
-attr_reader :bike_name
+  attr_accessor :bike_names
 
   def is_there_bike?
-    if self.bike_name != nil
-      self.bike_name
+    if @bike_names.length > 0 
+      true
+    else
+      false
+    end
+  end
+
+  def is_dock_full?
+    if @bike_names.length >= 20
+      true
     else
       false
     end

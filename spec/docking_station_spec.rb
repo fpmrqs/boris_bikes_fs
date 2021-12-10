@@ -35,8 +35,14 @@ describe DockingStation do
 
     it "return error if dock_bike called when dock is full" do
         subject.dock_bike(green_bike)
-        expect{subject.dock_bike}.to raise_error("Dock station is full")
+        expect{subject.dock_bike(green_bike)}.to raise_error("Dock station is full")
     end
 
+    it 'can only hold 20 bikes' do
+        20.times { subject.dock_bike(green_bike) }
+        expect { subject.dock_bike(green_bike).to raise_error("Docking Station is Full") }
+    end
+
+    
 
 end
