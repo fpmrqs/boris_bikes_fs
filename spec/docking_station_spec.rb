@@ -5,18 +5,13 @@ describe DockingStation do
 
     it {expect(DockingStation.new).to respond_to :release_bike} 
 
-    # it {expect(DockingStation.new.release_bike.working?).to be true}
-    # Test is now redundant as release_bike should check for bike first.
-
     it "check if bike is working" do
-        station = DockingStation.new
-        station.dock_bike(green_bike)
-        expect(station.release_bike.working?).to be true
+        subject.dock_bike(green_bike)
+        expect(subject.release_bike.working?).to be true
     end
 
     it {expect(DockingStation.new).to respond_to :dock_bike}
 
-    
     it {expect(DockingStation.new.dock_bike(green_bike)).to eq green_bike }
 
     it "return false if there is no bike in station" do
